@@ -17,8 +17,8 @@
 static const int BASE_X = 550;
 static const int BASE_Y = 200;
 
-static const std::string FONT_PATH = "lib/graphical/font/ARCADE_N.TTF";
-static const std::string BACKGROUND_PATH = "lib/graphical/font/background.png";
+static const std::string FONT_PATH = "assets/font/ARCADE_N.TTF";
+static const std::string BACKGROUND_PATH = "assets/sprites/background.png";
 static const std::string WINDOW_TITLE = "Arcade SDL2";
 
 namespace arcade

@@ -37,7 +37,8 @@ void arcade::LibPacman::init()
         "#o############o##o###########o#",
         "#o############o##o###########o#",
         "#ooooooooooooooooooooooooooooo#",
-        "###############################"
+        "###############################",
+        "                               "
     };
     ghostID = 0;
     mapSize = 1;

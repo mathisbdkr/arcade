@@ -30,17 +30,21 @@ namespace arcade {
         protected:
         private:
             void getQueue();
-            int findPlayer();
+            void findPlayer();
             bool isAvailable(char c);
             bool isAvailableFood(char c);
             void getSnakeLenght();
             void init();
             int moovePlayer(arcade::KeyPressed Key);
             int moove();
-            int changePlayerPos(std::string str);
-            void placeFood();
+            void changePlayerPos();
+            void placeFood(size_t y = 50, size_t x = 50);
             void fillVector();
 
+            size_t speed;
+            size_t scoreCopy;
+            size_t foodY;
+            size_t foodX;
             std::string _gameName;
             std::vector<std::pair<int, int>> MyVector;
             KeyPressed keyPressed;
