@@ -286,17 +286,17 @@ std::vector<std::pair<std::string, std::pair<int, int>>> arcade::LibPacman::getT
     return textToDisplay;
 }
 
-std::unordered_map<std::string, arcade::Color> arcade::LibPacman::getPattern() const
+std::unordered_map<std::string, std::pair<arcade::Color, std::string>> arcade::LibPacman::getPattern() const
 {
-    std::unordered_map<std::string, arcade::Color> pattern;
-    pattern.insert({" ", arcade::DEFAULT});
-    pattern.insert({"#", arcade::GRAY});
-    pattern.insert({"o", arcade::WHITE});
-    pattern.insert({"O", arcade::CYAN});
-    pattern.insert({"|", arcade::DEFAULT});
-    pattern.insert({"M", arcade::RED});
-    pattern.insert({"P", arcade::YELLOW});
-    pattern.insert({"F", arcade::BLUE});
+    std::unordered_map<std::string, std::pair<arcade::Color, std::string>> pattern;
+    pattern.insert({" ", {arcade::DEFAULT, ""}});
+    pattern.insert({"#", {arcade::GRAY, ""}});
+    pattern.insert({"o", {arcade::WHITE, ""}});
+    pattern.insert({"O", {arcade::CYAN, ""}});
+    pattern.insert({"|", {arcade::DEFAULT, ""}});
+    pattern.insert({"M", {arcade::RED, ""}});
+    pattern.insert({"P", {arcade::YELLOW, ""}});
+    pattern.insert({"F", {arcade::BLUE, ""}});
     return pattern;
 }
 

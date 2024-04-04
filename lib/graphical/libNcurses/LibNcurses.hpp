@@ -23,14 +23,14 @@ namespace arcade
         public:
             libNcurses();
             ~libNcurses();
-            void init(const std::unordered_map<std::string, Color> pattern) override;
+            void init(const std::unordered_map<std::string, std::pair<Color, std::string>> pattern) override;
             void stop() override;
-            void game(const std::string gameName) override;
+            void handleEvent(const std::string gameName) override;
             void displayText(std::vector<std::pair<std::string, std::pair<int, int>>> textToDisplay) override;
             void displayMap(std::array<std::string, 23> map, std::size_t size) override;
             arcade::KeyPressed getKey() const override;
             void setKey(arcade::KeyPressed newValue) override;
-            void changeColor(const std::unordered_map<std::string, Color> patternMap) override;
+            void changeColor(const std::unordered_map<std::string, std::pair<Color, std::string>> patternMap) override;
             std::string getPlayerName() const override;
         private:
             WINDOW *win;
@@ -47,7 +47,7 @@ namespace arcade
             int getNumber(std::string);
             void addScoreTabToDisplay(void);
             void otherGetKey(void);
-            void pickColor(const std::unordered_map<std::string, Color> patternMap);
+            void pickColor(const std::unordered_map<std::string, std::pair<Color, std::string>> patternMap);
             void color_remove(void);
             void checkTwoChar(std::size_t j, std::string str);
     };

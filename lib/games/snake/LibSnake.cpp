@@ -163,17 +163,17 @@ void arcade::LibSnake::getSnakeLenght()
         SnakeLenght = MyVector.size();
 }
 
-std::unordered_map<std::string, arcade::Color> arcade::LibSnake::getPattern() const
+std::unordered_map<std::string, std::pair<arcade::Color, std::string>> arcade::LibSnake::getPattern() const
 {
-    std::unordered_map<std::string, arcade::Color> pattern;
-    pattern.insert({" ", arcade::DEFAULT});
-    pattern.insert({"#", arcade::GRAY});
-    pattern.insert({"o", arcade::WHITE});
-    pattern.insert({"O", arcade::CYAN});
-    pattern.insert({"|", arcade::RED});
-    pattern.insert({"8", arcade::BLUE});
-    pattern.insert({"=", arcade::GREEN});
-    pattern.insert({"<", arcade::GREEN});
+    std::unordered_map<std::string, std::pair<arcade::Color, std::string>> pattern;
+    pattern.insert({" ", {arcade::DEFAULT, ""}});
+    pattern.insert({"#", {arcade::GRAY, ""}});
+    pattern.insert({"o", {arcade::WHITE, ""}});
+    pattern.insert({"O", {arcade::CYAN, ""}});
+    pattern.insert({"|", {arcade::RED, ""}});
+    pattern.insert({"8", {arcade::BLUE, ""}});
+    pattern.insert({"=", {arcade::GREEN, ""}});
+    pattern.insert({"<", {arcade::GREEN, ""}});
     return pattern;
 }
 

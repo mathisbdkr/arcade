@@ -155,9 +155,9 @@ std::pair<std::size_t, std::size_t> arcade::LibMenu::getIndexes() const
     return {_SelectedGameIndex, _SelectedLibIndex};
 }
 
-std::unordered_map<std::string, arcade::Color> arcade::LibMenu::getPattern() const
+std::unordered_map<std::string, std::pair<arcade::Color, std::string>> arcade::LibMenu::getPattern() const
 {
-    std::unordered_map<std::string, arcade::Color> pattern;
-    pattern.insert({" ", arcade::BLACK});
+    std::unordered_map<std::string, std::pair<arcade::Color, std::string>> pattern;
+    pattern.insert({" ", {arcade::DEFAULT, ""}});
     return pattern;
 }

@@ -28,7 +28,7 @@ namespace arcade
             virtual void resetGame() = 0;
             virtual std::array<std::string, 23> getMap() const = 0;
             virtual std::size_t getMapCellSize() const = 0;
-            virtual std::unordered_map<std::string, Color> getPattern() const = 0;
+            virtual std::unordered_map<std::string, std::pair<Color, std::string>> getPattern() const = 0;
             virtual std::vector<std::pair<std::string, std::pair<int, int>>> getText() const = 0;
             virtual void incrementTime() = 0;
             virtual GameStatus updateMap(KeyPressed key) = 0;

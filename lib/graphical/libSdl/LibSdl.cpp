@@ -12,7 +12,7 @@ arcade::libSdl::libSdl()
     return;
 }
 
-void arcade::libSdl::init(const std::unordered_map<std::string, Color> pattern)
+void arcade::libSdl::init(const std::unordered_map<std::string, std::pair<Color, std::string>> pattern)
 {
     window = SDL_CreateWindow(WINDOW_TITLE.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, 0);
     render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -28,7 +28,7 @@ void arcade::libSdl::init(const std::unordered_map<std::string, Color> pattern)
     backgroundSprite = IMG_LoadTexture(render, BACKGROUND_PATH.c_str());
 }
 
-void arcade::libSdl::changeColor(const std::unordered_map<std::string, arcade::Color> patternMap)
+void arcade::libSdl::changeColor(const std::unordered_map<std::string, std::pair<Color, std::string>> patternMap)
 {
     charMap.clear();
     pickColor(patternMap);
@@ -43,31 +43,31 @@ SDL_Texture* arcade::libSdl::madeRectangle(int r, int g, int b)
     return texture;
 }
 
-void arcade::libSdl::pickColor(const std::unordered_map<std::string, Color> patternMap)
+void arcade::libSdl::pickColor(const std::unordered_map<std::string, std::pair<Color, std::string>> patternMap)
 {
     for (auto tt = patternMap.begin(); tt != patternMap.end(); tt++) {
-        if (tt->second == arcade::BLACK) {
+        if (tt->second.first == arcade::BLACK) {
             charMap.insert({tt->first, madeRectangle(0,0,0)});
         }
-        if (tt->second == arcade::WHITE) {
+        if (tt->second.first == arcade::WHITE) {
             charMap.insert({tt->first, madeRectangle(255,255,255)});
         }
-        if (tt->second == arcade::RED) {
+        if (tt->second.first == arcade::RED) {
             charMap.insert({tt->first, madeRectangle(255,0,0)});
         }
-        if (tt->second == arcade::BLUE) {
+        if (tt->second.first == arcade::BLUE) {
             charMap.insert({tt->first, madeRectangle(0,0,124)});
         }
-        if (tt->second == arcade::GREEN) {
+        if (tt->second.first == arcade::GREEN) {
             charMap.insert({tt->first, madeRectangle(0,255,0)});
         }
-        if (tt->second == arcade::YELLOW) {
+        if (tt->second.first == arcade::YELLOW) {
             charMap.insert({tt->first, madeRectangle(255,240,0)});
         }
-        if (tt->second == arcade::GRAY) {
+        if (tt->second.first == arcade::GRAY) {
             charMap.insert({tt->first, madeRectangle(50,50,50)});
         }
-        if (tt->second == arcade::CYAN) {
+        if (tt->second.first == arcade::CYAN) {
             charMap.insert({tt->first, madeRectangle(74,86,237)});
         }
     }
@@ -79,7 +79,7 @@ void arcade::libSdl::stop()
     SDL_DestroyWindow(window);
 }
 
-void arcade::libSdl::game(const std::string gameName)
+void arcade::libSdl::handleEvent(const std::string gameName)
 {
     _gameName = gameName;
     SDL_RenderPresent(render);

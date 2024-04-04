@@ -111,7 +111,7 @@ void Core::gameLoop(void)
     auto time1 = std::chrono::steady_clock::now();
     arcade::GameStatus status = arcade::PLAYING;
     while (status == arcade::PLAYING) {
-        _graphicalLib->game(_gameLib->getGameName());
+        _graphicalLib->handleEvent(_gameLib->getGameName());
         auto time2 = std::chrono::steady_clock::now();
         auto elapsed= std::chrono::duration_cast <std::chrono::milliseconds>(time2 - time1);
         if (elapsed.count() >= _gameSpeed) {

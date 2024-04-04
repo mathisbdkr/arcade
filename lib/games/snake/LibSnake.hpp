@@ -19,7 +19,7 @@ namespace arcade {
             void resetGame() override;
             std::array<std::string, 23> getMap() const override;
             std::size_t getMapCellSize() const override;
-            std::unordered_map<std::string, Color> getPattern() const override;
+            std::unordered_map<std::string, std::pair<arcade::Color, std::string>> getPattern() const override;
             std::vector<std::pair<std::string, std::pair<int, int>>> getText() const override;
             void incrementTime() override {};
             GameStatus updateMap(arcade::KeyPressed key) override;

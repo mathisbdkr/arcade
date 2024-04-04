@@ -19,7 +19,7 @@ arcade::libNcurses::~libNcurses()
     _textToDiplay.clear();
 }
 
-void arcade::libNcurses::init(const std::unordered_map<std::string, Color> pattern)
+void arcade::libNcurses::init(const std::unordered_map<std::string, std::pair<Color, std::string>> pattern)
 {
     initscr();
     noecho();
@@ -38,45 +38,45 @@ void arcade::libNcurses::init(const std::unordered_map<std::string, Color> patte
     _keyPressed = arcade::OTHER;
 }
 
-void arcade::libNcurses::changeColor(const std::unordered_map<std::string, arcade::Color> patternMap)
+void arcade::libNcurses::changeColor(const std::unordered_map<std::string, std::pair<Color, std::string>> patternMap)
 {
     charMap.clear();
     pickColor(patternMap);
 }
 
-void arcade::libNcurses::pickColor(const std::unordered_map<std::string, Color> patternMap)
+void arcade::libNcurses::pickColor(const std::unordered_map<std::string, std::pair<Color, std::string>> patternMap)
 {
     for (auto tt = patternMap.begin(); tt != patternMap.end(); tt++) {
-        if (tt->second == arcade::BLACK) {
+        if (tt->second.first == arcade::BLACK) {
             init_pair(arcade::BLACK, COLOR_BLACK, COLOR_BLACK);
             charMap.insert({tt->first, arcade::BLACK});
         }
-        if (tt->second == arcade::WHITE) {
+        if (tt->second.first == arcade::WHITE) {
             init_pair(arcade::WHITE, COLOR_WHITE, COLOR_BLACK);
             charMap.insert({tt->first, arcade::WHITE});
         }
-        if (tt->second == arcade::RED) {
+        if (tt->second.first == arcade::RED) {
             init_pair(arcade::RED, COLOR_RED, COLOR_RED);
             charMap.insert({tt->first, arcade::RED});
         }
-        if (tt->second == arcade::BLUE) {
+        if (tt->second.first == arcade::BLUE) {
             init_pair(arcade::BLUE, COLOR_BLUE, COLOR_BLUE);
             charMap.insert({tt->first, arcade::BLUE});
         }
-        if (tt->second == arcade::GREEN) {
+        if (tt->second.first == arcade::GREEN) {
             init_pair(arcade::GREEN, COLOR_GREEN, COLOR_GREEN);
             charMap.insert({tt->first, arcade::GREEN});
         }
-        if (tt->second == arcade::YELLOW) {
+        if (tt->second.first == arcade::YELLOW) {
             init_pair(arcade::YELLOW, COLOR_YELLOW, COLOR_YELLOW);
             charMap.insert({tt->first, arcade::YELLOW});
         }
-        if (tt->second == arcade::GRAY) {
+        if (tt->second.first == arcade::GRAY) {
             init_color(100, 150, 150, 150);
             init_pair(arcade::GRAY, 100, 100);
             charMap.insert({tt->first, arcade::GRAY});
         }
-        if (tt->second == arcade::CYAN) {
+        if (tt->second.first == arcade::CYAN) {
             init_pair(arcade::CYAN, COLOR_CYAN, COLOR_BLACK);
             charMap.insert({tt->first, arcade::CYAN});
         }
@@ -90,7 +90,7 @@ void arcade::libNcurses::stop() {
     endwin();
 }
 
-void arcade::libNcurses::game(const std::string gameName)
+void arcade::libNcurses::handleEvent(const std::string gameName)
 {
     _gameName = gameName;
     otherGetKey();
@@ -237,8 +237,8 @@ void arcade::libNcurses::sortScore(std::size_t textSize)
 {
     int max = 0;
     std::size_t index = 0;
-    int x_score = 1000;
-    int y_score = 50;
+    int x_score = 800;
+    int y_score = 200;
     std::vector<std::pair<std::string, std::pair<int, int>>> tmpToDisplay;
     for (size_t i = 0; i < textSize; i++) {
         tmpToDisplay.push_back(_textToDiplay.at(i));
@@ -302,7 +302,7 @@ void arcade::libNcurses::displayText(std::vector<std::pair<std::string, std::pai
         _textToDiplay.push_back(textToDisplay.at(i));
     }
     for (size_t i = 0; i < _textToDiplay.size(); i++) {
-        mvwprintw(win, (_textToDiplay.at(i).second.second * 0.03), (_textToDiplay.at(i).second.first * 0.04), "%s", _textToDiplay.at(i).first.c_str());
+        mvwprintw(win, (_textToDiplay.at(i).second.second * 0.03), (_textToDiplay.at(i).second.first * 0.06), "%s", _textToDiplay.at(i).first.c_str());
     }
     wrefresh(win);
 }
