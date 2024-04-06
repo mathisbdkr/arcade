@@ -289,6 +289,8 @@ arcade::KeyPressed arcade::libSdl::getKey() const
         return arcade::G;
     if (state[SDL_SCANCODE_R])
         return arcade::R;
+    if (state[SDL_SCANCODE_SPACE])
+        return arcade::SPACE;
     if (state[SDL_SCANCODE_SEMICOLON] && _gameName.compare("menu") != 0) {
         return arcade::M;
     }

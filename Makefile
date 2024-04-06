@@ -39,6 +39,8 @@ games:
 	cd ./lib/games/pacman/ && make re
 	cd ./lib/games/snake/ && make re
 	cd ./lib/games/menu/ && make re
+	cd ./lib/games/snake_bonus/ && make re
+
 
 all: core graphicals games
 

@@ -99,7 +99,7 @@ arcade::GameStatus Core::winAndLooseEvent(arcade::GameStatus status)
     }
     if (status == arcade::NO_ACTIVITY) {
         status = arcade::PLAYING;
-        _gameSpeed -= 15;
+        _gameSpeed -= 10;
     }
     if (status == arcade::LOOSE) {
         status = arcade::PLAYING;

@@ -157,6 +157,10 @@ void arcade::libNcurses::otherGetKey(void)
         _keyPressed = arcade::KeyPressed::R;
         return;
     }
+    if (c == ' ') {
+        _keyPressed = arcade::KeyPressed::SPACE;
+        return;
+    }
     if ((c == 'm' || c == 'M') && _gameName.compare("menu") != 0) {
         _keyPressed = arcade::KeyPressed::M;
         return;

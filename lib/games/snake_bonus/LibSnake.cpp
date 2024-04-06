@@ -42,7 +42,7 @@ void arcade::LibSnake::init()
         "###############################"
     };
 
-    timeFood = 15;
+    timeFood = 16;
     _gameName = "Snake";
     score = 0;
     scoreCopy = 0;
@@ -53,8 +53,10 @@ void arcade::LibSnake::init()
     srand(time(NULL));
     placeFood();
     speed = 0;
-    timeSec = 0;
     replaceFood = 0;
+    goldeny = 0;
+    goldenx = 0;
+    lastgolden = 0;
 }
 
 std::array<std::string, 23> arcade::LibSnake::getMap() const
@@ -104,7 +106,23 @@ void arcade::LibSnake::placeFood(size_t y, size_t x)
     size_t lastx = foodX;
     foodY = rand() % 23;
     foodX = rand() % 31;
+    size_t random1 = rand() % 10;
+    size_t random2 = rand() % 10;
 
+    if (random1 == random2) {
+        goldeny = rand() % 23;
+        goldenx = rand() % 31;
+        while (isAvailableFood(map.at(goldeny).at(goldenx)) == false ||
+        ((goldeny == y && goldenx == x) ||
+        (goldeny == lasty && goldenx == lastx))) {
+        goldeny = rand() % 23;
+        goldenx = rand() % 31;
+        }
+        map[goldeny][goldenx] = 'O';
+        lastgolden = timeFood;
+        timeFood = 16;
+
+    }
     while (isAvailableFood(map.at(foodY).at(foodX)) == false ||
     ((foodY == y && foodX == x) ||
     (foodY == lasty && foodX == lastx))) {
@@ -169,6 +187,10 @@ bool arcade::LibSnake::isAvailableFood(char c)
         return false;
     if (c == '8')
         return false;
+    if (c == '|')
+        return false;
+    if (c == 'O')
+        return false;
     return true;
 }
 
@@ -188,6 +210,8 @@ void arcade::LibSnake::checkTime()
     if (replaceFood == timeFood) {
         replaceFood = 0;
         map[foodY][foodX] = ' ';
+        if (map[goldeny][goldenx] == 'O')
+            map[goldeny][goldenx] = ' ';
         placeFood();
     }
 }
@@ -197,8 +221,8 @@ std::unordered_map<std::string, std::pair<arcade::Color, std::string>> arcade::L
     std::unordered_map<std::string, std::pair<arcade::Color, std::string>> pattern;
     pattern.insert({" ", {arcade::DEFAULT, ""}});
     pattern.insert({"#", {arcade::GRAY, ""}});
-    pattern.insert({"o", {arcade::WHITE, ""}});
-    pattern.insert({"O", {arcade::BLUE, "./assets/sprites/golden_apple.png"}});
+    pattern.insert({"o", {arcade::WHITE, "./assets/sprites/rotten_apple.png"}});
+    pattern.insert({"O", {arcade::YELLOW, "./assets/sprites/golden_apple.png"}});
     pattern.insert({"|", {arcade::RED, "./assets/sprites/apple.png"}});
     pattern.insert({"8", {arcade::BLUE, "./assets/sprites/snake_head.png"}});
     pattern.insert({"=", {arcade::GREEN, "./assets/sprites/snake_body.png"}});
@@ -208,7 +232,12 @@ std::unordered_map<std::string, std::pair<arcade::Color, std::string>> arcade::L
 
 void arcade::LibSnake::changePlayerPos()
 {
-    if (map[playerY][playerX] == '|') {
+    if (map[playerY][playerX] == '|' || map[playerY][playerX] == 'O') {
+        if (map[playerY][playerX] == 'O') {
+            map[foodY][foodX] = ' ';
+            score += 4;
+            timeFood = (lastgolden + 5);
+        }
         score++;
         scoreCopy++;
         if (direction == DROITE) {
