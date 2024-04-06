@@ -51,6 +51,7 @@ namespace arcade
             std::string _playerName;
             std::vector<std::pair<std::string, std::pair<int, int>>> _textToDiplay;
             SDL_Texture *backgroundSprite;
+            bool spriteLoaded;
 
             void sortScore(std::size_t textSize);
             int getNumber(std::string);
@@ -58,6 +59,7 @@ namespace arcade
             void pickColor(const std::unordered_map<std::string, std::pair<Color, std::string>> patternMap);
             void checkTwoChar(std::size_t j, std::string str);
             SDL_Texture* madeRectangle(int r, int g, int b);
+            SDL_Texture* madeSprite(int r, int g, int b, std::string path);
     };
 };
 

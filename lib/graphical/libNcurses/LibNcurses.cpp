@@ -62,6 +62,9 @@ void arcade::libNcurses::pickColor(const std::unordered_map<std::string, std::pa
         if (tt->second.first == arcade::BLUE) {
             init_pair(arcade::BLUE, COLOR_BLUE, COLOR_BLUE);
             charMap.insert({tt->first, arcade::BLUE});
+            init_color(110, 0, 0, 250);
+            init_pair(arcade::BLUE, 110, 110);
+            charMap.insert({tt->first, arcade::BLUE});
         }
         if (tt->second.first == arcade::GREEN) {
             init_pair(arcade::GREEN, COLOR_GREEN, COLOR_GREEN);

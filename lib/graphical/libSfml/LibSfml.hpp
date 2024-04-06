@@ -10,6 +10,7 @@
 
     #include <SFML/Graphics.hpp>
     #include <fstream>
+    #include <iostream>
     #include "../../includes/IDisplayModule.hpp"
 
 static const int BASE_X = 550;
@@ -41,23 +42,26 @@ namespace arcade
             float squareSize;
             sf::Event event;
             sf::Font _font;
-            std::map<std::string, sf::RectangleShape> charMap;
+            std::map<std::string, std::pair<sf::RectangleShape, std::string>> charMap;
             std::string _gameName;
             std::string _playerName;
             arcade::KeyPressed _keyClose;
             arcade::KeyPressed _key;
+            arcade::KeyPressed _lastDirection;
             bool nextChar;
             std::vector<std::pair<std::string, std::pair<int, int>>> _textToDiplay;
             sf::Sprite backgroundSprite;
             sf::Texture backgroundTexture;
+            bool spriteLoaded;
 
+            void setLastDirection(arcade::KeyPressed key);
+            void displaySpriteItem(sf::RectangleShape rect, sf::Texture tmp);
             void sortScore(std::size_t textSize);
             int getNumber(std::string);
             void pickColor(const std::unordered_map<std::string, std::pair<Color, std::string>> patternMap);
             void addScoreTabToDisplay(void);
             void incertCharToPlayerName(void);
             sf::RectangleShape madeRectangle(sf::Color color, float size);
-            bool displayRoundShape(sf::RectangleShape rect, char c);
             void checkTwoChar(std::size_t j, std::string str);
             sf::Vector2f getPosition(float x, float y);
             sf::Color RGB(int r, int g, int b);
