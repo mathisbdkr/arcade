@@ -225,6 +225,7 @@ void arcade::libNcurses::displayMap(std::array<std::string, 23> map, std::size_t
     }
     x = BASE_X;
     y = BASE_Y;
+    wrefresh(win);
 }
 
 int arcade::libNcurses::getNumber(std::string str)
@@ -311,7 +312,6 @@ void arcade::libNcurses::displayText(std::vector<std::pair<std::string, std::pai
     for (size_t i = 0; i < _textToDiplay.size(); i++) {
         mvwprintw(win, (_textToDiplay.at(i).second.second * 0.03), (_textToDiplay.at(i).second.first * 0.06), "%s", _textToDiplay.at(i).first.c_str());
     }
-    wrefresh(win);
 }
 
 std::string arcade::libNcurses::getPlayerName() const

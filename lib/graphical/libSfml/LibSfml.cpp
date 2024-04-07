@@ -169,6 +169,7 @@ void arcade::libSfml::handleEvent(const std::string gameName)
         window.close();
         _keyClose = CLOSE_BUTTON;
     }
+    window.display();
     window.clear();
     if (spriteLoaded == true) {
         window.draw(backgroundSprite);
@@ -354,8 +355,6 @@ void arcade::libSfml::displayText(std::vector<std::pair<std::string, std::pair<i
         txt.setString(_textToDiplay.at(i).first.c_str());
         window.draw(txt);
     }
-    
-    window.display();
 }
 
 sf::Color arcade::libSfml::RGB(int r, int g, int b)

@@ -87,6 +87,7 @@ void Core::quitMenu(void)
         _graphicalLibIndex = indexPair.first;
         changeGraphicalLib();
         changeGameLib();
+        _gameSpeed = 150;
     }
 }
 
@@ -135,8 +136,8 @@ void Core::gameLoop(void)
             _gameLib->incrementTime();
             second1 = std::chrono::steady_clock::now();
         }
+        _graphicalLib->displayText(_gameLib->getText());
         _graphicalLib->displayMap(_gameLib->getMap(), _gameLib->getMapCellSize());
         status = winAndLooseEvent(status);
-        _graphicalLib->displayText(_gameLib->getText());
     }
 }

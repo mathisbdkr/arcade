@@ -78,6 +78,7 @@ void Core::changeLibrary()
     }
     if (_key == arcade::G && pass == 0) {
         _gameLibIndex = changeLibIndex(_gameLibIndex, 1, _libGameLen);
+        _gameSpeed = 150;
         changeGameLib();
     }
     if (_key != arcade::G && pass == 1) {
@@ -92,6 +93,7 @@ void Core::changeLibrary()
         _gameLib->initText(_dlLoader->getGraphicalPath(), _dlLoader->getGamePath());
         _graphicalLib->init(_gameLib->getPattern());
         _graphicalLib->setKey(arcade::OTHER);
+        _gameSpeed = 150;
     }
     if (_key != arcade::M && pass == 1) {
         pass = 0;
